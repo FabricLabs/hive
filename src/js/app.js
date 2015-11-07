@@ -3,6 +3,7 @@
 import 'angular';
 import 'angular-material';
 import 'angular-ui-router';
+import 'angular-material-icons';
 
 // controllers
 import HomeController from './HomeController';
@@ -13,6 +14,7 @@ import plyrDirective from './plyrDirective';
 
 let dependencies = [
   'ngMaterial',
+  'ngMdIcons',
   'ui.router'
 ];
 
