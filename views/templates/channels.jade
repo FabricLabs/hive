@@ -1,2 +1,4 @@
 h1 Channels
-a(href='#/c/testing') testing
+ul
+  li(ng-repeat='channel in home.channels')
+    a(ng-href='#/c/{{channel.slug}}') {{channel.name}}
