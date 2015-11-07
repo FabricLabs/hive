@@ -2,9 +2,15 @@ var ObjectId = require('mongoose').SchemaTypes.ObjectId;
 
 var Play = {
   attributes: {
-    title: { type: String },
+    state: { type: String , enum: ['queued', 'playing', 'played', 'skipped'] , default: 'queued' },
+    created: { type: Date, }, //required: true, default:  Date.now },
+    started: { type: Date },
+    ended: { type: Date },
     duration: { type: Number },
-    _track: { type: ObjectId, ref: 'Track', required: true }
+    score: { type: Number },
+    votes: { type: Number },
+    _track: { type: ObjectId, ref: 'Track', required: true },
+    _channel: { type: ObjectId, ref: 'Track', required: true },
   }
 }
 
