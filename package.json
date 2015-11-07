@@ -15,9 +15,12 @@
     "cssnext": "^1.8.4",
     "gulp": "^3.9.0",
     "gulp-load-plugins": "^1.1.0",
+    "gulp-nodemon": "^2.0.4",
     "gulp-postcss": "^6.0.1",
     "gulp-sequence": "^0.4.1",
     "gulp-sourcemaps": "^1.6.0",
+    "gulp-util": "^3.0.7",
+    "lodash.assign": "^3.2.0",
     "maki": "git://github.com/martindale/maki#nko",
     "maki-auth-simple": "^0.1.1",
     "maki-passport-local": "0.0.4",
@@ -31,7 +34,8 @@
   "scripts": {
     "start": "node web.js",
     "postinstall": "node scripts/postinstall.js",
-    "build": "gulp"
+    "build": "gulp",
+    "watch": "gulp watch"
   },
   "engines": {
     "node": "0.10.x"
