@@ -23,15 +23,18 @@ import assign from 'lodash.assign';
 const config = {
 	src: {
 		styles: 'src/css/app.css',
-		scripts: ['src/js/app.js']
+		scripts: ['src/js/app.js'],
+		templates: 'views/templates/**/*.jade'
 	},
 	dest: {
 		styles: 'public/css',
-		scripts: 'public/js'
+		scripts: 'public/js',
+		templates: 'public/templates'
 	},
 	watch: {
 		styles: 'src/css/**/*.css',
-		scripts: 'src/js/**/*.js'
+		scripts: 'src/js/**/*.js',
+		templates: 'views/**/*.jade'
 	},
 	server: {
 		entry: 'hive:web.js',
@@ -52,7 +55,7 @@ bundler.on('log', g.util.log);
 
 function scripts() {
 	return bundler.bundle()
-		.on('error', function () {
+		.on('error', function (err) {
 			g.util.log(err.toString());
 			this.emit('end');
 		})
@@ -64,8 +67,8 @@ function scripts() {
 
 function styles() {
 	let processors = [
-		cssnext(),
 		atImport(),
+		cssnext(),
 		autoprefixer()
 	];
 
@@ -75,10 +78,18 @@ function styles() {
 		.pipe(sync.reload({stream: true}));
 }
 
+function templates() {
+	return gulp.src(config.src.templates)
+		.pipe(g.jade())
+		.pipe(gulp.dest(config.dest.templates))
+		.pipe(sync.reload({stream: true}));
+}
+
 function build(done) {
 	g.sequence([
 		'styles',
-		'scripts'
+		'scripts',
+		'templates'
 	], done);
 }
 
@@ -113,19 +124,26 @@ function checkIfUp(done) {
 function watch(done) {
 	g.sequence('default', 'nodemon', function () {
 		bundler = watchify(bundler);
-		// bundler.on('update', scripts);
 
 		sync.init({
 			proxy: `${config.server.host}:${config.server.port}`
 		});
 
 		gulp.watch(config.watch.styles, ['styles']);
-		gulp.watch(config.watch.scripts, ['scripts']);
+		gulp.watch(config.watch.scripts, ['scripts', 'reload']);
+		gulp.watch(config.watch.templates, ['templates', 'reload']);
 	});
+}
+
+function reload(done) {
+	sync.reload();
+	done();
 }
 
 gulp.task('styles', styles);
 gulp.task('scripts', scripts);
+gulp.task('templates', templates);
+gulp.task('reload', reload);
 gulp.task('nodemon', nodemon);
 gulp.task('default', build);
 gulp.task('watch', watch);
