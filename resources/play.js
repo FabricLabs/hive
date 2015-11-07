@@ -11,6 +11,9 @@ var Play = {
     votes: { type: Number },
     _track: { type: ObjectId, ref: 'Track', required: true, populate: ['get'] },
     _channel: { type: ObjectId, ref: 'Channel', required: true },
+  },
+  methods: {
+    
   }
 }
 
