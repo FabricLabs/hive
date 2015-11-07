@@ -3,6 +3,7 @@
 import 'angular';
 import 'angular-material';
 import 'angular-ui-router';
+import 'angular-material-icons';
 import 'angular-resource';
 
 // controllers
@@ -18,6 +19,7 @@ import ChannelsFactory from './ChannelsFactory';
 let dependencies = [
   'ngResource',
   'ngMaterial',
+  'ngMdIcons',
   'ui.router'
 ];
 
