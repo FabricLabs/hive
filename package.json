@@ -1,15 +1,17 @@
 {
-  "name": "nko2015-entry",
+  "name": "hive",
   "version": "0.0.1",
   "description": "Our soon to be awesome entry for NKO2015. Let's make something amazing.",
   "author": "Node Knockout Team <all@nodeknockout.com>",
   "main": "./app.js",
   "dependencies": {
-    "express": "3.x.x"
+    "maki": "git://github.com/martindale/maki",
+    "maki-auth-simple": "^0.1.1",
+    "maki-passport-local": "0.0.4",
+    "maki-remote": "0.0.1"
   },
   "scripts": {
-    "start": "node app.js",
+    "start": "node hive:web.js",
     "postinstall": "node scripts/postinstall.js"
   }
-
 }
