@@ -3,6 +3,7 @@ var ObjectId = require('mongoose').SchemaTypes.ObjectId;
 var Person = {
   attributes: {
     email: { type: String, unique: true, sparse: true },
+    password: { type: String, required: true },
     username: { type: String },
     roles: [{ type: String, enum: ['editor', 'moderator', 'admin'] }],
     created: { type: Date, default: Date.now, required: true },

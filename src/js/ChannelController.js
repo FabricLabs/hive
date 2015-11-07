@@ -1,13 +1,23 @@
 'use strict';
 
 class ChannelController {
-  constructor($stateParams) {
-    this._id = $stateParams.channelId;
+  constructor($stateParams, Channels) {
+    let {slug} = $stateParams;
+
+    this.track = null;
+    this.name = null;
+
+    Channels.get({slug}, (channel) => {
+      console.log(channel);
+      this.name = channel.name;
+      this.track = channel._track;
+    });
   }
 }
 
 ChannelController.$inject = [
-  '$stateParams'
+  '$stateParams',
+  'Channels'
 ]
 
 export default ChannelController
