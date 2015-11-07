@@ -9,8 +9,8 @@ var Play = {
     duration: { type: Number },
     score: { type: Number },
     votes: { type: Number },
-    _track: { type: ObjectId, ref: 'Track', required: true },
-    _channel: { type: ObjectId, ref: 'Track', required: true },
+    _track: { type: ObjectId, ref: 'Track', required: true, populate: ['get'] },
+    _channel: { type: ObjectId, ref: 'Channel', required: true },
   }
 }
 
