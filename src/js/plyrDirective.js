@@ -6,7 +6,7 @@ function plyrDirective() {
     link: function (scope, el, attrs) {
       plyr.setup();
 
-      document.querySelectorAll('.player')[0].plyr.play();
+      // document.querySelectorAll('.player')[0].plyr.play();
     }
   }
 }
