@@ -5,6 +5,7 @@
   "author": "Node Knockout Team <all@nodeknockout.com>",
   "main": "./app.js",
   "dependencies": {
+    "async": "^1.5.0",
     "autoprefixer": "^6.1.0",
     "babel-core": "^6.1.2",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.1.3",
@@ -20,11 +21,12 @@
     "gulp-sequence": "^0.4.1",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-util": "^3.0.7",
+    "lodash": "^3.10.1",
     "lodash.assign": "^3.2.0",
     "maki": "git://github.com/martindale/maki#nko",
     "maki-auth-simple": "^0.1.1",
     "maki-passport-local": "0.0.4",
-    "maki-remote": "0.0.1",
+    "maki-remote": "0.0.3",
     "mongoose": "^4.2.4",
     "postcss-import": "^7.1.3",
     "vinyl-buffer": "^1.0.0",
@@ -33,7 +35,7 @@
   },
   "scripts": {
     "start": "node web.js",
-    "postinstall": "node scripts/postinstall.js",
+    "postinstall": "npm run build && node scripts/postinstall.js",
     "build": "gulp",
     "watch": "gulp watch"
   },
