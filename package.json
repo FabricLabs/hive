@@ -5,13 +5,17 @@
   "author": "Node Knockout Team <all@nodeknockout.com>",
   "main": "./app.js",
   "dependencies": {
-    "maki": "git://github.com/martindale/maki",
+    "maki": "git://github.com/martindale/maki#nko",
     "maki-auth-simple": "^0.1.1",
     "maki-passport-local": "0.0.4",
-    "maki-remote": "0.0.1"
+    "maki-remote": "0.0.1",
+    "mongoose": "^4.2.4"
   },
   "scripts": {
-    "start": "node hive:web.js",
+    "start": "node web.js",
     "postinstall": "node scripts/postinstall.js"
+  },
+  "engines": {
+    "node": "0.10.x"
   }
 }
