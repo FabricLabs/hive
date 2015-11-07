@@ -4,7 +4,7 @@ var Person = {
   attributes: {
     email: { type: String , max: 240 , unique: true, sparse: true },
     username: { type: String , max: 40 , slug: true },
-    password: { type: String , max: 240 , masked: true },
+    password: { type: String , max: 240 , masked: true , required: true },
     roles: [{ type: String, enum: ['editor', 'moderator', 'admin'] }],
     created: { type: Date, default: Date.now, required: true },
     avatar: {

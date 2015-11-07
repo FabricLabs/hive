@@ -3,6 +3,7 @@
 import 'angular';
 import 'angular-material';
 import 'angular-ui-router';
+import 'angular-resource';
 
 // controllers
 import HomeController from './HomeController';
@@ -11,7 +12,11 @@ import ChannelController from './ChannelController';
 // directives
 import plyrDirective from './plyrDirective';
 
+// services
+import ChannelsFactory from './ChannelsFactory';
+
 let dependencies = [
+  'ngResource',
   'ngMaterial',
   'ui.router'
 ];
@@ -29,7 +34,7 @@ function config($stateProvider, $urlRouterProvider, $locationProvider) {
       controllerAs: 'home'
     })
     .state('channel', {
-      url: '/c/:channelId',
+      url: '/c/:slug',
       templateUrl: '/templates/channel.html',
       controller: 'ChannelController',
       controllerAs: 'channel'
@@ -47,6 +52,7 @@ angular
   .config(config)
   .controller('HomeController', HomeController)
   .controller('ChannelController', ChannelController)
-  .directive('plyr', plyrDirective);
+  .directive('plyr', plyrDirective)
+  .factory('Channels', ChannelsFactory);
 
 angular.bootstrap(document, ['hive']);
