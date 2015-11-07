@@ -1,7 +1,8 @@
 .channel(layout='column')
-  .header header
+  .header {{channel.name}}
   div(layout='row' flex)
     div(flex)
-      plyr
+      // plyr
+      .title {{channel.track.title}}
     .panels panels
   .footer

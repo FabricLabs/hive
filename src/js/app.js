@@ -34,7 +34,7 @@ function config($stateProvider, $urlRouterProvider, $locationProvider) {
       controllerAs: 'home'
     })
     .state('channel', {
-      url: '/c/:channelId',
+      url: '/c/:slug',
       templateUrl: '/templates/channel.html',
       controller: 'ChannelController',
       controllerAs: 'channel'
