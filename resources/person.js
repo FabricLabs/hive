@@ -1,4 +1,4 @@
-var ObjectId = require('maki/node_modules/mongoose').SchemaTypes.ObjectId;
+var ObjectId = require('mongoose').SchemaTypes.ObjectId;
 
 var Person = {
   attributes: {
