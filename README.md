@@ -1,3 +1,11 @@
+Hive
+====
+[![Build Status](https://img.shields.io/travis/martindale/hive.svg?branch=master&style=flat-square)](https://travis-ci.org/martindale/hive)
+[![Coverage Status](https://img.shields.io/coveralls/martindale/hive.svg?style=flat-square)](https://coveralls.io/r/martindale/hive)
+[![Community](https://community.ericmartindale.com/badge.svg)](https://community.ericmartindale.com/)
+
+Swarm-hosted streaming.
+
 ## Quick Start
 
 ~~~sh
