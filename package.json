@@ -5,15 +5,37 @@
   "author": "Node Knockout Team <all@nodeknockout.com>",
   "main": "./app.js",
   "dependencies": {
+    "autoprefixer": "^6.1.0",
+    "babel-core": "^6.1.2",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.1.3",
+    "babel-preset-es2015": "^6.1.2",
+    "babelify": "^7.2.0",
+    "browser-sync": "^2.9.12",
+    "browserify": "^12.0.1",
+    "cssnext": "^1.8.4",
+    "gulp": "^3.9.0",
+    "gulp-load-plugins": "^1.1.0",
+    "gulp-nodemon": "^2.0.4",
+    "gulp-postcss": "^6.0.1",
+    "gulp-sequence": "^0.4.1",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-util": "^3.0.7",
+    "lodash.assign": "^3.2.0",
     "maki": "git://github.com/martindale/maki#nko",
     "maki-auth-simple": "^0.1.1",
     "maki-passport-local": "0.0.4",
     "maki-remote": "0.0.1",
-    "mongoose": "^4.2.4"
+    "mongoose": "^4.2.4",
+    "postcss-import": "^7.1.3",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.6.0"
   },
   "scripts": {
     "start": "node web.js",
-    "postinstall": "node scripts/postinstall.js"
+    "postinstall": "node scripts/postinstall.js",
+    "build": "gulp",
+    "watch": "gulp watch"
   },
   "engines": {
     "node": "0.10.x"
