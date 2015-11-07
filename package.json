@@ -5,7 +5,9 @@
   "author": "Node Knockout Team <all@nodeknockout.com>",
   "main": "./app.js",
   "dependencies": {
-    "maki": "git://github.com/martindale/maki"
+    "maki": "git://github.com/martindale/maki",
+    "maki-auth-simple": "^0.1.1",
+    "maki-passport-local": "0.0.4"
   },
   "scripts": {
     "start": "node hive:web.js",
