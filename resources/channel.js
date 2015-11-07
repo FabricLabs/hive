@@ -6,7 +6,8 @@ var Channel = {
     created: { type: Date , required: true , default: Date.now },
     _creator: { type: ObjectId , ref: 'Person' },
     _owner: { type: ObjectId , ref: 'Person' },
-    _track: { type: ObjectId , ref: 'Track' }
+    _track: { type: ObjectId , ref: 'Track' },
+    _play: { type: ObjectId , ref: 'Play' }
   }
 }
 
