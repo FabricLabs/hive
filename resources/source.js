@@ -14,6 +14,11 @@ var Source = {
     times: {
       start: { type: Number , default: 0 },
       end: { type: Number , default: -1 },
+    },
+    images: {
+      thumbnail: {
+        url: { type: String }
+      }
     }
   },
   indices: [ { fields: ['type', 'id'] , unique: true } ]

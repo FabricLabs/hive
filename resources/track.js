@@ -6,7 +6,12 @@ var Track = {
     created: { type: Date, required: true, default: Date.now },
     title: { type: String },
     duration: { type: Number , default: 15 },
-    _sources: [ { type: ObjectId , ref: 'Source', required: true } ]
+    images: {
+      thumbnail: {
+        url: { type: String }
+      }
+    },
+    _sources: [ { type: ObjectId , ref: 'Source', required: true } ],
   }
 }
 
