@@ -3,13 +3,18 @@
 function plyrDirective() {
   return {
     scope: {
-      source: '='
+      trackId: '='
     },
-    template: '<div class="player"><div data-video-id="dQw4w9WgXcQ" data-type="youtube"></div></div>',
+    replace: true,
+    template: '<div class="videoWrapper"></div>',
     link: function (scope, el, attrs) {
-      // plyr.setup();
-      console.log(scope);
-      // document.querySelectorAll('.player')[0].plyr.play();
+      scope.$watch('trackId', function (nextTrack) {
+        console.log(`loading ${nextTrack}`);
+        let iframe = document.createElement('iframe');
+        iframe.src = `https://www.youtube.com/embed/${nextTrack}?autoplay=1`;
+        el.empty()
+        el.append(iframe);
+      });
     }
   }
 }
