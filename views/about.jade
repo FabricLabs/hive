@@ -1,0 +1,14 @@
+extends layouts/default
+
+block content
+  h1 Getting Started
+  p Hive is a peer-to-peer service, so you'll need to run a client.
+  
+  
+  
+  
+  
+  h3 Edge Nodes
+  code
+    for peer in peers
+      | #{peer.protocol}://#{peer.address}
