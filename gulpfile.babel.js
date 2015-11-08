@@ -55,6 +55,8 @@ function scripts() {
 
 	if (watching && !bundler) {
 		bundler = watchify(browserify(opts));
+		bundler.on('log', g.util.log);
+		bundler.on('update', scripts);
 	} else if (!bundler) {
 		bundler = browserify(opts);
 	}
@@ -62,8 +64,6 @@ function scripts() {
 	bundler.transform(babelify.configure({
 		sourceMapRelative: 'src/js'
 	}));
-	bundler.on('log', g.util.log);
-	bundler.on('update', scripts);
 
 	return bundler.bundle()
 		.on('error', function (err) {

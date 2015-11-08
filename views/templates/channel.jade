@@ -2,9 +2,8 @@
   section(layout='row' flex)
     nav.queue queue
     article(flex)
-      //- plyr(source='channel.track.sources')
-      .videoWrapper
-        iframe(src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen)
-      .title {{channel.track.title}}
+      plyr(track-id='channel.track.id')
+      .title {{channel.track.title}} {{channel.track}}
+      div {{channel}}
     aside.users users
   .footer

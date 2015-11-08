@@ -1,16 +1,24 @@
 'use strict';
 
 class ChannelController {
-  constructor($stateParams, Channels, Sources) {
+  constructor($scope, $stateParams, Channels, Sources) {
+    let vm = this;
     let {slug} = $stateParams;
 
-    this.track = null;
+    this.track = {id: 'dQw4w9WgXcQ'};
     this.name = null;
     this.source = null;
+    this.channel = null;
 
     Channels.get({slug}, (channel) => {
-      console.log(channel);
-      let track = this.track = channel._track;
+      console.log('Channel info:', channel);
+      let track;
+
+      this.channel = channel;
+
+      if (channel._track) {
+        track = this.track = channel._track;
+      }
       this.name = channel.name;
 
       if (track && track.sources) {
@@ -20,17 +28,37 @@ class ChannelController {
       }
     });
 
-    var errorHandler = function() { ws = new WebSocket('wss://hive.media/channels/test'); }
-    var ws = new WebSocket('wss://hive.media/channels/test');
+    var protocol = (location.protocol === 'http:') ? 'ws:' : 'wss:';
+    var hostname = (location.port === 3000) ? 'localhost:6333' : 'hive.media';
+    var socketPath = `${(protocol)}//${hostname}/channels/test`;
+    var errorHandler = function() { ws = new WebSocket(socketPath); }
+    var ws = new WebSocket(socketPath);
     ws.onerror = errorHandler
-    ws.onmessage = function(msg) {
+    ws.onmessage = (msg) => {
       var data = JSON.parse(msg.data);
-      console.log(data.params || data);
+      console.log(data);
+      if (data && data.params) {
+        let {channel, ops} = data.params;
+        if (channel === '/channels/test') {
+          ops.forEach(op => {
+            if (op.op === 'replace' && op.path === '/_track') {
+              this.channel._track = op.value;
+            }
+          })
+
+          $scope.$apply();
+        }
+      }
     };
+  }
+
+  updateTrack(trackId) {
+    this.track.id = trackId;
   }
 }
 
 ChannelController.$inject = [
+  '$scope',
   '$stateParams',
   'Channels',
   'Sources'
