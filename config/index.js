@@ -10,6 +10,9 @@ module.exports = {
   services: {
     http: {
       port: process.env.PORT || 6333
+    },
+    youtube: {
+      key: process.env.YOUTUBE_KEY || 'obtain key'
     }
   }
 }
