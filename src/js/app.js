@@ -18,6 +18,7 @@ import plyrDirective from './plyrDirective';
 import CategoriesFactory from './CategoriesFactory';
 import ChannelsFactory from './ChannelsFactory';
 import SourcesFactory from './SourcesFactory';
+import PlaysFactory from './PlaysFactory';
 
 let dependencies = [
   'ngResource',
@@ -66,6 +67,7 @@ angular
   .directive('plyr', plyrDirective)
   .factory('Channels', ChannelsFactory)
   .factory('Categories', CategoriesFactory)
-  .factory('Sources', SourcesFactory);
+  .factory('Sources', SourcesFactory)
+  .factory('Plays', PlaysFactory);
 
 angular.bootstrap(document, ['hive']);
