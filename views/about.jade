@@ -4,10 +4,19 @@ block content
   h1 Getting Started
   p Hive is a peer-to-peer service, so you'll need to run a client.
   
+  h2 Step 1: Create a Channel.
+  p Channels are the "bundles" of events that a group of peers agree on.  This can be considered a localized consensus.
+  
+  h2 Step 2: Run an Agent.
+  p Download <a href="https://github.com/martindale/hive/blob/master/hive:agent.js"><code>hive:agent.js</code></a>, modify it to point at your Channel, and run it.
+  
+  h2 Step 3: Profit.
+  p By default, the agent will randomly select an element from the Tracks collection, and broadcast it.  You can change and configure your agent's rules on your own, and independent of the rest of (the) hive.  
   
   
-  
-  
+  h2 Heads Up!
+  p Hive is experimental, and might get stuck from time to time.  If it does, we've provided list of the peers this particular Hive node is aware of below.  You may need to configure your agent to point at them if they're down!
+
   h3 Edge Nodes
   code
     for peer in peers
