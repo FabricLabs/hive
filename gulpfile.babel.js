@@ -48,10 +48,7 @@ let opts = assign({}, watchify.args, {
 	entries: config.src.scripts,
 	debug: true
 });
-let bundler = browserify(opts);
-
-bundler.transform(babelify);
-bundler.on('log', g.util.log);
+let bundler = watchify(browserify(opts));
 
 function scripts() {
 	return bundler.bundle()
@@ -61,9 +58,17 @@ function scripts() {
 		})
 		.pipe(source('hive.js'))
 		.pipe(buffer())
+		// .pipe(g.sourcemaps.init({loadMaps: true}))
+		// .pipe(g.sourcemaps.write('./'))
 		.pipe(gulp.dest(config.dest.scripts))
-		.pipe(sync.reload({stream: true}));
+		.pipe(sync.stream({once: true}));
 }
+
+bundler.transform(babelify.configure({
+	sourceMapRelative: 'src/js'
+}));
+bundler.on('log', g.util.log);
+bundler.on('update', scripts);
 
 function styles() {
 	let processors = [
@@ -123,14 +128,12 @@ function checkIfUp(done) {
 
 function watch(done) {
 	g.sequence('default', 'nodemon', function () {
-		bundler = watchify(bundler);
-
 		sync.init({
 			proxy: `${config.server.host}:${config.server.port}`
 		});
 
 		gulp.watch(config.watch.styles, ['styles']);
-		gulp.watch(config.watch.scripts, ['scripts', 'reload']);
+		// gulp.watch(config.watch.scripts, ['scripts', 'reload']);
 		gulp.watch(config.watch.templates, ['templates', 'reload']);
 	});
 }
