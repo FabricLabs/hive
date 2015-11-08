@@ -18,7 +18,7 @@ h2 Featured Channels
   .div(ng-repeat='channel in home.channels', flex='33')
     md-card.channel-card
       a(href='#/c/{{channel.slug}}')
-        img.md-card-image(ng-src='{{ home.imagePath }}', alt='{{ channel.slug }}')
+        img.md-card-image(ng-src='{{ channel._track.images.thumbnail.url }}', alt='{{ channel.slug }}')
       md-card-content
         md-input-container(flex)
           h3 {{channel.name}}
