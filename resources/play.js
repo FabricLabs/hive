@@ -9,7 +9,7 @@ var Play = {
     duration: { type: Number },
     score: { type: Number },
     votes: { type: Number },
-    _track: { type: ObjectId, ref: 'Track', required: true, populate: ['get'] },
+    _track: { type: ObjectId, ref: 'Track', required: true, populate: ['get', 'query'] },
     _channel: { type: ObjectId, ref: 'Channel', required: true },
   },
   methods: {
