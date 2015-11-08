@@ -48,9 +48,15 @@
     "start": "node web.js",
     "postinstall": "npm run build && node scripts/postinstall.js",
     "build": "gulp",
-    "watch": "gulp watch"
+    "watch": "gulp watch",
+    "test": "mocha"
   },
   "engines": {
     "node": "0.10.x"
+  },
+  "devDependencies": {
+    "coveralls": "^2.11.4",
+    "istanbul": "^0.4.0",
+    "mocha": "^2.3.3"
   }
 }
