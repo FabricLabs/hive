@@ -20,13 +20,12 @@ var ChannelResource = {
       self.Resource.patch({
         _id: play._channel
       }, [
-        { op: 'add', path: '/_play', value: play._id.toString() },
-        { op: 'add', path: '/_track', value: play._track.toString() },
-        { op: 'replace', path: '/_play', value: play._id.toString() },
-        { op: 'replace', path: '/_track', value: play._track.toString() },
+        { op: 'add', path: '/_play', value: play._id },
+        { op: 'add', path: '/_track', value: play._track },
+        { op: 'replace', path: '/_play', value: play._id },
+        { op: 'replace', path: '/_track', value: play._track },
       ], function(err, channels) {
         console.log('channels patched', err, channels.length);
-
         self.Resource.Model.findOne({ _id: play._channel }).exec(function(err, channel) {
           console.log('about to call cleanAndRotate on ', err, channel.slug);
           channel.cleanAndRotate();
