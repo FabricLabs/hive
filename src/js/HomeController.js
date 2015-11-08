@@ -5,7 +5,7 @@ const BOTTOMSHEET = new WeakMap();
 const EVENT = new WeakMap();
 
 class HomeController {
-  constructor($mdDialog, $mdBottomSheet, Channels) {
+  constructor($mdDialog, $mdBottomSheet, Channels, Categories) {
     BOTTOMSHEET.set(this, $mdBottomSheet);
     DIALOG.set(this, $mdDialog);
 
@@ -16,10 +16,16 @@ class HomeController {
       this.channels = channels;
       //console.log(channels);
     });
+    
+    Categories.query((categories) => {
+      this.categories = categories;
+      console.log(categories);
+    });
+
   }
 
   toggleSidenav(menuId) {
-    // $mdSidenav(menuId).toggle();
+    $mdSidenav(menuId).toggle();
   }
 
   success(desserts) {
@@ -61,7 +67,8 @@ class HomeController {
 HomeController.$inject = [
   '$mdDialog',
   '$mdBottomSheet',
-  'Channels'
+  'Channels',
+  'Categories'
 ];
 
 export default HomeController

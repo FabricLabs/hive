@@ -1,37 +1,36 @@
 'use strict';
 
-class ChannelController {
-  constructor($scope, $stateParams, Channels, Sources) {
+class CategoryController {
+  constructor($scope, $stateParams, Categorys, Sources) {
     let vm = this;
     let {slug} = $stateParams;
 
     this.track = {id: 'dQw4w9WgXcQ'};
     this.name = null;
     this.source = null;
-    this.channel = null;
+    this.category = null;
 
-    Channels.get({slug}, (channel) => {
-      console.log('Channel info:', channel);
+    Categories.get({slug}, (category) => {
+      console.log('Category info:', category);
       let track;
 
-      this.channel = channel;
+      this.category = category;
 
-      if (channel._track) {
-        track = this.track = channel._track;
+      if (category._track) {
+        track = this.track = category._track;
       }
-      this.name = channel.name;
+      this.name = category.name;
 
-      if (track && track._sources) {
-        Sources.get({_id: channel._track._sources[0]}, sources => {
-          console.log(sources);
-          track._sources = sources;
+      if (track && track.sources) {
+        Sources.get({_id: category._track.sources}, sources => {
+          track.sources = sources;
         });
       }
     });
 
     var protocol = (location.protocol === 'http:') ? 'ws:' : 'wss:';
     var hostname = (location.port === 3000) ? 'localhost:6333' : 'hive.media';
-    var socketPath = `${(protocol)}//${hostname}/channels/test`;
+    var socketPath = `${(protocol)}//${hostname}/categories/test`;
     var errorHandler = function() { ws = new WebSocket(socketPath); }
     var ws = new WebSocket(socketPath);
     ws.onerror = errorHandler
@@ -39,11 +38,11 @@ class ChannelController {
       var data = JSON.parse(msg.data);
       console.log(data);
       if (data && data.params) {
-        let {channel, ops} = data.params;
-        if (channel === '/channels/test') {
+        let {category, ops} = data.params;
+        if (category === '/categories/test') {
           ops.forEach(op => {
             if (op.op === 'replace' && op.path === '/_track') {
-              this.channel._track = op.value;
+              this.category._track = op.value;
             }
           })
 
@@ -58,11 +57,11 @@ class ChannelController {
   }
 }
 
-ChannelController.$inject = [
+CategoryController.$inject = [
   '$scope',
   '$stateParams',
-  'Channels',
+  'Categories',
   'Sources'
 ]
 
-export default ChannelController
+export default CategoryController
