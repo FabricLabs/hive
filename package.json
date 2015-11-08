@@ -48,7 +48,7 @@
   },
   "scripts": {
     "start": "node web.js",
-    "postinstall": "npm run build && node scripts/postinstall.js",
+    "postinstall": "node scripts/postinstall.js",
     "build": "gulp",
     "watch": "gulp watch",
     "test": "mocha"
