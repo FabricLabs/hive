@@ -11,7 +11,7 @@ var Channels = new Remote(base + '/channels');
 
 Channels.query({}, function(channels) {
   var agents = channels.map(function(channel) {
-    var agent = new Agent();
+    var agent = new Agent(channel.slug);
 
     agent.start();
     
