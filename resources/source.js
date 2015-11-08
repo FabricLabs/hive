@@ -5,6 +5,8 @@ var Source = {
     created: { type: Date, required: true, default: Date.now },
     type: { type: String, required: true },
     id: { type: String, required: true },
+    title: { type: String },
+    duration: { type: Number },
     flags: {
       restricted: { type: Boolean },
       broken: { type: Boolean }
