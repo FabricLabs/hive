@@ -5,7 +5,7 @@ const BOTTOMSHEET = new WeakMap();
 const EVENT = new WeakMap();
 
 class HomeController {
-  constructor($mdDialog, $mdBottomSheet, Channels) {
+  constructor($mdDialog, $mdBottomSheet, Channels, Categories) {
     BOTTOMSHEET.set(this, $mdBottomSheet);
     DIALOG.set(this, $mdDialog);
 
@@ -16,6 +16,12 @@ class HomeController {
       this.channels = channels;
       //console.log(channels);
     });
+    
+    Categories.query((channels) => {
+      this.channels = channels;
+      //console.log(channels);
+    });
+
   }
 
   toggleSidenav(menuId) {
@@ -61,7 +67,8 @@ class HomeController {
 HomeController.$inject = [
   '$mdDialog',
   '$mdBottomSheet',
-  'Channels'
+  'Channels',
+  'Categories'
 ];
 
 export default HomeController

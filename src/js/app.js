@@ -9,11 +9,13 @@ import 'angular-resource';
 // controllers
 import HomeController from './HomeController';
 import ChannelController from './ChannelController';
+import CategoryController from './CategoryController';
 
 // directives
 import plyrDirective from './plyrDirective';
 
 // services
+import CategoriesFactory from './CategoriesFactory';
 import ChannelsFactory from './ChannelsFactory';
 import SourcesFactory from './SourcesFactory';
 
@@ -41,6 +43,12 @@ function config($stateProvider, $urlRouterProvider, $locationProvider) {
       templateUrl: '/templates/channel.html',
       controller: 'ChannelController',
       controllerAs: 'channel'
+    })
+    .state('category', {
+      url: '/category/:slug',
+      templateUrl: '/templates/category.html',
+      controller: 'CategoryController',
+      controllerAs: 'category'
     });
 }
 
@@ -57,6 +65,7 @@ angular
   .controller('ChannelController', ChannelController)
   .directive('plyr', plyrDirective)
   .factory('Channels', ChannelsFactory)
+  .factory('Categories', CategoriesFactory)
   .factory('Sources', SourcesFactory);
 
 angular.bootstrap(document, ['hive']);
