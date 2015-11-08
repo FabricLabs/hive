@@ -25,10 +25,10 @@ h2 Categories
 .div(layout='row', layout-wrap, layout-sm='column', layout-md='column')
   .div(ng-repeat='category in home.categories', flex='33')
     md-card.category-card
-      a(href='#/c/{{category.slug}}')
+      a(href='#/category/{{category.slug}}')
         img.md-card-image(ng-src='{{ home.imagePath }}', alt='{{ category.slug }}')
       md-card-content
         md-input-container(flex)
           h3 {{category.name}}
           p {{ category.description }}
-          md-button.md-primary(ng-click='#/c/{{category.slug}}') Join
+          md-button.md-primary(ng-click='#/category/{{category.slug}}') Join

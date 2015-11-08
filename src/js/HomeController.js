@@ -17,9 +17,9 @@ class HomeController {
       //console.log(channels);
     });
     
-    Categories.query((channels) => {
-      this.channels = channels;
-      //console.log(channels);
+    Categories.query((categories) => {
+      this.categories = categories;
+      console.log(categories);
     });
 
   }
