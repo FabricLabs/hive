@@ -13,7 +13,7 @@ class ChannelController {
       let track = this.track = channel._track;
       this.name = channel.name;
 
-      if (track.sources) {
+      if (track && track.sources) {
         Sources.get({_id: channel._track.sources}, sources => {
           track.sources = sources;
         });
