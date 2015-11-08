@@ -1,8 +1,10 @@
 .channel(layout='column')
-  .header {{channel.name}}
-  div(layout='row' flex)
-    div(flex)
-      plyr(source='channel.track.sources')
+  section(layout='row' flex)
+    nav.queue queue
+    article(flex)
+      //- plyr(source='channel.track.sources')
+      .videoWrapper
+        iframe(src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen)
       .title {{channel.track.title}}
-    .panels panels
+    aside.users users
   .footer
