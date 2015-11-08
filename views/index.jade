@@ -2,7 +2,7 @@ extends layouts/knockout
 
 block content
 
-  md-toolbar(ng-controller='HomeController as home', ng-show='!showSearch')
+  md-toolbar(ng-controller='HomeController as home')
     div.md-toolbar-tools
       md-button.menuBtn(ng-click="home.toggleSidenav('left')", aria-label='Menu')
         ng-md-icon(icon='menu')

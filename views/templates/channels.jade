@@ -23,7 +23,7 @@ h2 Featured Channels
         md-input-container(flex)
           h3 {{channel.name}}
           p {{ channel.description }}
-          md-button.md-primary(ng-click='#/c/{{channel.slug}}') Join
+          md-button.md-primary.md-raised(ng-click='#/c/{{channel.slug}}') Join
           
 md-button.md-fab.md-fab-bottom-right(aria-label='Add', ng-click='home.showAdd($event)')
   ng-md-icon(icon='add')
