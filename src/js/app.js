@@ -15,6 +15,7 @@ import plyrDirective from './plyrDirective';
 
 // services
 import ChannelsFactory from './ChannelsFactory';
+import SourcesFactory from './SourcesFactory';
 
 let dependencies = [
   'ngResource',
@@ -55,6 +56,7 @@ angular
   .controller('HomeController', HomeController)
   .controller('ChannelController', ChannelController)
   .directive('plyr', plyrDirective)
-  .factory('Channels', ChannelsFactory);
+  .factory('Channels', ChannelsFactory)
+  .factory('Sources', SourcesFactory);
 
 angular.bootstrap(document, ['hive']);

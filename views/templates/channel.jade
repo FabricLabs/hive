@@ -2,7 +2,7 @@
   .header {{channel.name}}
   div(layout='row' flex)
     div(flex)
-      // plyr
+      plyr(source='channel.track.sources')
       .title {{channel.track.title}}
     .panels panels
   .footer
