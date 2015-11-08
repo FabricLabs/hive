@@ -1,4 +1,11 @@
-h1 Channels
+h1.md-display-3 Swarm-hosted content.
+p.md-display-1 <strong>Hive</strong> is a peer-to-peer content-consumption platform.
+p This website is an <strong>edge node</strong>, a portal for users of the legacy World Wide Web to access the swarm.
+
+md-button Feed the Swarm
+
+h2 Featured Channels
+
 .div(layout='row', layout-wrap, layout-sm='column', layout-md='column')
   .div(ng-repeat='channel in home.channels', flex='33')
     md-card.channel-card
@@ -12,3 +19,16 @@ h1 Channels
           
 md-button.md-fab.md-fab-bottom-right(aria-label='Add', ng-click='home.showAdd($event)')
   ng-md-icon(icon='add')
+
+h2 Categories
+
+.div(layout='row', layout-wrap, layout-sm='column', layout-md='column')
+  .div(ng-repeat='category in home.categories', flex='33')
+    md-card.category-card
+      a(href='#/c/{{category.slug}}')
+        img.md-card-image(ng-src='{{ home.imagePath }}', alt='{{ category.slug }}')
+      md-card-content
+        md-input-container(flex)
+          h3 {{category.name}}
+          p {{ category.description }}
+          md-button.md-primary(ng-click='#/c/{{category.slug}}') Join
