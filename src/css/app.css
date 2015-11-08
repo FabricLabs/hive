@@ -15,6 +15,10 @@ body {
   right: 0;
 }
 
+.channel-card {
+  width: 360px;
+}
+
 .header {
   height: 80px;
 }
