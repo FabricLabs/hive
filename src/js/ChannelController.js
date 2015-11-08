@@ -1,7 +1,9 @@
 'use strict';
 
+import _ from 'lodash';
+
 class ChannelController {
-  constructor($scope, $stateParams, Channels, Sources) {
+  constructor($scope, $stateParams, Channels, Sources, Plays) {
     let vm = this;
     let {slug} = $stateParams;
 
@@ -9,6 +11,7 @@ class ChannelController {
     this.name = null;
     this.source = null;
     this.channel = null;
+    this.sourceId = null;
 
     Channels.get({slug}, (channel) => {
       console.log('Channel info:', channel);
@@ -19,19 +22,28 @@ class ChannelController {
       if (channel._track) {
         track = this.track = channel._track;
       }
+
       this.name = channel.name;
+
+      Plays.query(plays => {
+        // filter out plays for other channels
+        plays = _.where(plays, {_channel: this.channel._id});
+      });
+
 
       if (track && track._sources) {
         Sources.get({_id: channel._track._sources[0]}, sources => {
           console.log(sources);
           track._sources = sources;
+          $scope.$apply();
         });
       }
     });
 
-    var protocol = (location.protocol === 'http:') ? 'ws:' : 'wss:';
-    var hostname = (location.port === 3000) ? 'localhost:6333' : 'hive.media';
-    var socketPath = `${(protocol)}//${hostname}/channels/test`;
+    // var protocol = (location.protocol === 'http:') ? 'ws:' : 'wss:';
+    // var hostname = (location.port === 3000) ? 'localhost:6333' : 'hive.media';
+    // var socketPath = `${(protocol)}//${hostname}/channels/test`;
+    var socketPath = 'wss://hive.media/channels/test';
     var errorHandler = function() { ws = new WebSocket(socketPath); }
     var ws = new WebSocket(socketPath);
     ws.onerror = errorHandler
@@ -40,14 +52,15 @@ class ChannelController {
       console.log(data);
       if (data && data.params) {
         let {channel, ops} = data.params;
-        if (channel === '/channels/test') {
+        if (channel === '/channels/' + slug) {
           ops.forEach(op => {
             if (op.op === 'replace' && op.path === '/_track') {
-              this.channel._track = op.value;
+              Sources.get({_id: op.value._sources[0]}, source => {
+                this.sourceId = source.id;
+                $scope.$apply();
+              });
             }
           })
-
-          $scope.$apply();
         }
       }
     };
@@ -62,7 +75,8 @@ ChannelController.$inject = [
   '$scope',
   '$stateParams',
   'Channels',
-  'Sources'
+  'Sources',
+  'Plays'
 ]
 
 export default ChannelController
