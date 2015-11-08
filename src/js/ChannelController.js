@@ -24,7 +24,7 @@ class ChannelController {
       if (track && track._sources) {
         Sources.get({_id: channel._track._sources[0]}, sources => {
           console.log(sources);
-          track.sources = sources;
+          track._sources = sources;
         });
       }
     });
