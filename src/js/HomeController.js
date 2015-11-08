@@ -25,7 +25,7 @@ class HomeController {
   }
 
   toggleSidenav(menuId) {
-    // $mdSidenav(menuId).toggle();
+    $mdSidenav(menuId).toggle();
   }
 
   success(desserts) {
