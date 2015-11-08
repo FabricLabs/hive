@@ -7,7 +7,7 @@ div(layout="row", style="padding: 1em;")
 
     p
       div(layout="row", layout-align="end end")
-        md-button.md-primary.md-raised(ng-click=) Feed the Swarm
+        md-button.md-primary.md-raised(href="/get-started") Feed the Swarm
 
   div(flex="33")
     img(src="/img/honeycomb-small.png")
@@ -23,7 +23,7 @@ h2 Featured Channels
         md-input-container(flex)
           h3 {{channel.name}}
           p {{ channel.description }}
-          md-button.md-primary.md-raised(ng-click='#/c/{{channel.slug}}') Join
+          md-button.md-primary.md-raised(href='#/c/{{channel.slug}}') Join
           
 md-button.md-fab.md-fab-bottom-right(aria-label='Add', ng-click='home.showAdd($event)')
   ng-md-icon(icon='add')
