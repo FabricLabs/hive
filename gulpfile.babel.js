@@ -44,13 +44,27 @@ const config = {
 };
 
 let g = plugins();
-let opts = assign({}, watchify.args, {
-	entries: config.src.scripts,
-	debug: true
-});
-let bundler = watchify(browserify(opts));
+let watching = false;
+let bundler = null;
 
 function scripts() {
+	let opts = assign({}, watchify.args, {
+		entries: config.src.scripts,
+		debug: true
+	});
+
+	if (watching && !bundler) {
+		bundler = watchify(browserify(opts));
+	} else if (!bundler) {
+		bundler = browserify(opts);
+	}
+
+	bundler.transform(babelify.configure({
+		sourceMapRelative: 'src/js'
+	}));
+	bundler.on('log', g.util.log);
+	bundler.on('update', scripts);
+
 	return bundler.bundle()
 		.on('error', function (err) {
 			g.util.log(err.toString());
@@ -58,17 +72,9 @@ function scripts() {
 		})
 		.pipe(source('hive.js'))
 		.pipe(buffer())
-		// .pipe(g.sourcemaps.init({loadMaps: true}))
-		// .pipe(g.sourcemaps.write('./'))
 		.pipe(gulp.dest(config.dest.scripts))
 		.pipe(sync.stream({once: true}));
 }
-
-bundler.transform(babelify.configure({
-	sourceMapRelative: 'src/js'
-}));
-bundler.on('log', g.util.log);
-bundler.on('update', scripts);
 
 function styles() {
 	let processors = [
@@ -127,13 +133,14 @@ function checkIfUp(done) {
 }
 
 function watch(done) {
+	watching = true;
 	g.sequence('default', 'nodemon', function () {
 		sync.init({
 			proxy: `${config.server.host}:${config.server.port}`
 		});
 
 		gulp.watch(config.watch.styles, ['styles']);
-		// gulp.watch(config.watch.scripts, ['scripts', 'reload']);
+		gulp.watch(config.watch.scripts, ['scripts']);
 		gulp.watch(config.watch.templates, ['templates', 'reload']);
 	});
 }
