@@ -2,3 +2,5 @@ node_modules
 npm-debug.log
 public
 data
+config
+agent.js
