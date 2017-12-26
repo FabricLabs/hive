@@ -1,9 +1,9 @@
 {
   "name": "hive",
-  "version": "0.0.1",
-  "description": "Our soon to be awesome entry for NKO2015. Let's make something amazing.",
-  "author": "Node Knockout Team <all@nodeknockout.com>",
-  "main": "./app.js",
+  "version": "0.2.0-dev",
+  "description": "experimental peer-to-peer messaging",
+  "author": "Fabric Labs",
+  "main": "./hive.js",
   "dependencies": {
     "angular": "^1.4.7",
     "angular-animate": "^1.4.7",
