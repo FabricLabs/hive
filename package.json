@@ -58,8 +58,8 @@
     "node": "0.10.x"
   },
   "devDependencies": {
-    "coveralls": "^2.11.4",
-    "istanbul": "^0.4.0",
-    "mocha": "^2.3.3"
+    "coveralls": "^2.13.3",
+    "istanbul": "^0.4.5",
+    "mocha": "^2.5.3"
   }
 }
