@@ -1,8 +1,8 @@
 Hive
 ====
-[![Build Status](https://img.shields.io/travis/martindale/hive.svg?branch=master&style=flat-square)](https://travis-ci.org/martindale/hive)
-[![Coverage Status](https://img.shields.io/coveralls/martindale/hive.svg?style=flat-square)](https://coveralls.io/r/martindale/hive)
-[![Community](https://community.ericmartindale.com/badge.svg)](https://community.ericmartindale.com/)
+[![Build Status](https://img.shields.io/travis/FabricLabs/hive.svg?branch=master&style=flat-square)](https://travis-ci.org/FabricLabs/hive)
+[![Coverage Status](https://img.shields.io/coveralls/FabricLabs/hive.svg?style=flat-square)](https://coveralls.io/r/FabricLabs/hive)
+[![Community](https://chat.maki.io/badge.svg)](https://chat.maki.io)
 
 Swarm-hosted streaming.
 
